@@ -1,3 +1,8 @@
+/**
+ * Credit to Kenny Yip Coding on YouTube for guidance and assistance in code.
+ * https://www.youtube.com/watch?v=XM2n1gu4530&list=LL&index=1&t=1182s
+ */
+
 var board;
 var score = 0;
 var rows = 4;
@@ -25,7 +30,19 @@ function setupGame() {
             document.getElementById("board").append(tile);
         }
     }
+    addTile();
             
+}
+
+function addTile() {
+    let ranVal = Math.floor(Math.random() * columns * rows);
+    let tile = document.getElementById(ranVal.toString());
+    while(tile.innerText != "") {
+        ranVal = Math.floor(Math.random() * columns * rows);
+        tile = document.getElementById(ranVal.toString());
+    }
+    board[Math.floor(ranVal / 4)][ranVal % 4] = 2;
+    updateTile(tile, 2);
 }
 
 document.addEventListener("keyup", (e) => {
@@ -41,7 +58,7 @@ document.addEventListener("keyup", (e) => {
     else if (e.code == "ArrowDown") {
         slideDown();
     }
-    
+    addTile();
 });
 
 function slideLeft() {
@@ -52,7 +69,6 @@ function slideLeft() {
 
         for (let c = 0; c < columns; ++c) {
             let id = r * 4 + c;
-            console.log(id);
             let tile = document.getElementById(id.toString());
             let num = board[r][c];
             updateTile(tile, num);
@@ -70,7 +86,6 @@ function slideRight() {
 
         for (let c = 0; c < columns; ++c) {
             let id = r * 4 + c;
-            console.log(id);
             let tile = document.getElementById(id.toString());
             let num = board[r][c];
             updateTile(tile, num);
@@ -86,7 +101,6 @@ function slideUp() {
         for (let r = 0; r < rows; ++r) {
             board[r][c] = row[r];
             let id = r * 4 + c;
-            console.log(id);
             let tile = document.getElementById(id.toString());
             let num = board[r][c];
             updateTile(tile, num);
@@ -104,7 +118,6 @@ function slideDown() {
         for (let r = 0; r < rows; ++r) {
             board[r][c] = row[r];
             let id = r * 4 + c;
-            console.log(id);
             let tile = document.getElementById(id.toString());
             let num = board[r][c];
             updateTile(tile, num);
@@ -150,4 +163,14 @@ function updateTile(tile, num) {
             tile.classList.add("x8192");
         }
     }
+}
+
+function checkFull() {
+    for (let r = 0; r < rows; ++r) {
+        for (let c = 0; c < columns; ++c) {
+            if (board[r][c] == 0)
+                return false;
+        }
+    }
+    return true;
 }
