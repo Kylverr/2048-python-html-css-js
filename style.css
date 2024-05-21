@@ -39,5 +39,30 @@ body {
 
 .x4 {
     background-color: lightslategray;
-    color: green;
+    color: rgb(150, 188, 150);
+}
+
+.x8 {
+    background-color: rgb(12, 219, 105);
+    color: black;
+}
+
+.x16 {
+    background-color: rgb(0, 120, 245);
+    color: black;
+}
+
+.x32 {
+    background-color: rgb(120, 107, 50);
+    color: white;
+}
+
+.x64 {
+    background-color: lightpink;
+    color: black;
+}
+
+.x128 {
+    background-color: lightyellow;
+    color: black;
 }
